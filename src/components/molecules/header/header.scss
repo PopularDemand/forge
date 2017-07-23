@@ -1,11 +1,17 @@
 @import '../../../shared/styles/globals.scss';
 
 .header {
-  background-color: $secondaryColor;
+  background-color: rgba($secondaryColor, 0.4);
+
+  &.navbar  {
+    margin-bottom: 0;
+    position: fixed;
+    width: 100vw;
+  }
 
   .logo {
     color: $primaryColor;
     font-size: $fontSizeLarge;
-    letter-spacing: 3.4px
+    letter-spacing: 3.5px;
   }
 }

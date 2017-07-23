@@ -1,0 +1,62 @@
+@import '../../../shared/styles/globals.scss';
+
+.homepage {
+
+  .hero {
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: auto 100vh;
+    background-position: center center;
+    background-image: linear-gradient($imageTint, $imageTint),
+                      url(https://s3-us-west-2.amazonaws.com/ren-forge/frameofmind.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 0;
+    
+    .hero-text {
+      color: $white;
+      font-family: $splashFont;
+      text-align: center;
+    }
+
+    .cta-btn {
+      width: 50%;
+      min-heigh: 40px;
+    }
+
+
+    .form-wrapper {
+      margin-top: 20px;
+      background: $secondaryColor;
+      padding: 0 20px 20px 20px;
+      border-radius: 4px;
+      color: white;
+
+      p, ul {
+        font-size: 14px;
+      }
+
+      h3 {
+        font-family: $splashFont;
+        font-size: 32px;
+      }
+
+      .input-group {
+        width: 100%;
+      }
+
+      .error-required {
+        font-size: 10px;
+      }
+
+      button {
+        @extend .secondary;
+        border-color: $primaryColor;
+        width: 100%;
+      }
+    }
+
+  }
+}
