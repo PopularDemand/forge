@@ -1,0 +1,9 @@
+$bootstrap-sass-asset-helper: true;
+@import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+@font-face {
+    font-family: 'PermanentMarker';
+    src: url(../../shared/fonts/permanent-marker/PermanentMarker.ttf);
+    font-weight: normal;
+    font-style: normal;
+}

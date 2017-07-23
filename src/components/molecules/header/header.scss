@@ -1,0 +1,11 @@
+@import '../../../shared/styles/globals.scss';
+
+.header {
+  background-color: $secondaryColor;
+
+  .logo {
+    color: $primaryColor;
+    font-size: $fontSizeLarge;
+    letter-spacing: 3.4px
+  }
+}
