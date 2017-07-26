@@ -1,41 +1,54 @@
 /**
-  *  Variables
-  */
+ *  Variables
+ */
 
-$primaryColor: #FF6600;
-$secondaryColor: #424242;
+$primaryOrange: #FF6600;
+$primaryGray: #424242;
+$secondaryGray: #EAEAEA;
 $black: #000000;
 $white: #FFFFFF;
 
 $splashFont: 'PermanentMarker';
+$fontSizeMedium: 24px;
 $fontSizeLarge: 32px;
+$fontSizeXL: 40px;
 
 $imageTint: rgba(66,66,66,0.7);
+
+$headerHeight: 50px;
+
+/**
+ *  Brand Classes
+ */
 
 .logo {
   font-family: $splashFont;
 }
 
+/**
+ *  Brand Buttons
+ */
+
 button {
-  border: 1px solid $primaryColor;
+  border: 1px solid $primaryOrange;
   font-family: sans-serif;
 
   &.primary {
-    background-color: $primaryColor;
+    background-color: $primaryOrange;
     color: white;
 
     &:hover {
-      background-color: darken($primaryColor, 5%);
+      background-color: darken($primaryOrange, 5%);
       color: $white;
     }
   }
 
   &.secondary {
     background-color: $white;
-    color: $primaryColor;
+    color: $primaryOrange;
     &:hover {
       background-color: darken($white, 5%);
-      color: $primaryColor;
+      color: $primaryOrange;
     }
   }
 
@@ -44,7 +57,7 @@ button {
     color: $white;
     border-color: $black;
     &:hover {
-      background-color: $secondaryColor;
+      background-color: $primaryGray;
       color: $white;
     }
   }

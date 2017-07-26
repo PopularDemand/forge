@@ -5,7 +5,7 @@ import './header.css';
 
 export function Header() {
   return (
-    <nav className="navbar navbar-static-top header">
+    <nav className="navbar navbar-fixed-top header">
       <Link to='/' className="navbar-brand logo">Ren</Link>
     </nav>
   )

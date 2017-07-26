@@ -1,0 +1,48 @@
+@import '../../../shared/styles/globals.scss';
+
+.shop-page {
+  margin-top: $headerHeight;
+
+  height: 600px;
+
+  .hero {
+    background-color: $primaryGray;
+    text-align: center;
+
+    &.jumbotron {
+      margin-bottom: 0;
+    }
+
+    .hero-text {
+      font-family: $splashFont;
+      color: $primaryOrange;
+      font-size: $fontSizeXL;
+    }
+  }
+
+  .content-container {
+
+    &.container-fluid {
+      padding-left: 0;
+    }
+  }
+
+  // Side Nav
+  .side-nav {
+    display: flex;
+    flex-direction: column;
+
+    .side-nav-link {
+      height: $headerHeight;
+      background-color: $secondaryGray;
+      color: $primaryGray;
+      font-size: $fontSizeMedium;
+      padding: 10px;
+
+      &:hover {
+        text-decoration: none;
+        background-color: darken($secondaryGray, 10%);
+      }
+    }
+  }
+}

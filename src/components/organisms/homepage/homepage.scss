@@ -29,7 +29,7 @@
 
     .form-wrapper {
       margin-top: 20px;
-      background: $secondaryColor;
+      background: $primaryGray;
       padding: 0 20px 20px 20px;
       border-radius: 4px;
       color: white;
@@ -53,7 +53,7 @@
 
       button {
         @extend .secondary;
-        border-color: $primaryColor;
+        border-color: $primaryOrange;
         width: 100%;
       }
     }
