@@ -5,15 +5,10 @@
 
   &.navbar  {
     margin-bottom: 0;
-    // position: fixed;
-    // width: 100%;
-    // top: 0;
     height: $headerHeight;
   }
 
-  .logo {
-    color: $primaryOrange;
-    font-size: $fontSizeLarge;
-    letter-spacing: 3.5px;
+  .navbar-brand {
+    padding: 0 15px;
   }
 }
