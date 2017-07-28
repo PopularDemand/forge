@@ -32,6 +32,12 @@
     display: flex;
     flex-direction: column;
 
+    .side-nav-header {
+      color: $secondaryGray;
+      background-color: $primaryGray;
+      text-align: center;
+    }
+
     .side-nav-link {
       height: $headerHeight;
       background-color: $secondaryGray;
@@ -42,6 +48,36 @@
       &:hover {
         text-decoration: none;
         background-color: darken($secondaryGray, 10%);
+      }
+    }
+  }
+
+  .grid-header {
+    .title {
+      float: left;
+    }
+
+    .search {
+      float: right;
+    }
+  }
+
+  // Product Grid
+  .product-grid {
+
+    .product-row {
+      display: inline-block;
+      margin-top: 15px;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid $secondaryGray;
+      padding: 15px;
+
+      &:hover {
+        border-color: $primaryGray;
       }
     }
   }
