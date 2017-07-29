@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { chunk } from 'lodash';
 import { compose, defaultProps } from 'recompose';
@@ -58,7 +59,14 @@ export function Shop({ header }) {
   )
 }
 
+function mapStateToProps(state) {
+  return {
+    ...state
+  }
+}
+
 const enhance = compose(
+  connect(mapStateToProps),
   defaultProps({
     header: 'Gear Up For Great Changes'
   })
