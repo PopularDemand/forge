@@ -6,17 +6,22 @@ import { BrowserRouter } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 import { App } from './components/app';
 import store from './store';
-
+import { appSetState } from './store/actions/app';
+import { shopSetState } from './store/actions/shop';
 import { exampleState } from './exampleState';
 
-store.dispatch({
-  type: 'APP_SET_STATE',
-  state: exampleState.app
-});
-store.dispatch({
-  type: 'SHOP_SET_STATE',
-  state: exampleState.shop
-});
+function setInitialState() {
+  return function(dispatch) {
+    return Promise.resolve(exampleState).then(
+      (state) => Promise.all([
+        dispatch(appSetState(state.app)),
+        dispatch(shopSetState(state.shop))
+      ])
+    );
+  }
+}
+
+store.dispatch(setInitialState);
 
 ReactDOM.render((
   <Provider store={store}>
