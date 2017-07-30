@@ -8,6 +8,7 @@ import { App } from './components/app';
 import store from './store';
 import { appSetState } from './store/actions/app';
 import { shopSetState } from './store/actions/shop';
+
 import { exampleState } from './exampleState';
 
 function setInitialState() {
@@ -21,7 +22,7 @@ function setInitialState() {
   }
 }
 
-store.dispatch(setInitialState);
+store.dispatch(setInitialState());
 
 ReactDOM.render((
   <Provider store={store}>

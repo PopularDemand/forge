@@ -1,7 +1,8 @@
-import { merge } from 'lodash';
-
 function setState(state, newState) {
-  return merge(state, newState);
+  return {
+    ...state,
+    ...newState
+  };
 }
 
 export function AppReducer(state = {}, action) {

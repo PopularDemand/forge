@@ -45,9 +45,18 @@
       font-size: $fontSizeMedium;
       padding: 10px;
 
+      &.selected {
+        background-color: $white;
+        color: $black;
+      }
+
       &:hover {
         text-decoration: none;
         background-color: darken($secondaryGray, 10%);
+      }
+
+      &:focus {
+        text-decoration: none;
       }
     }
   }

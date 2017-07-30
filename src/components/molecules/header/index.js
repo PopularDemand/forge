@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { compose } from 'recompose';
 
 import { Ren } from '../../atoms/logo';
 
-// import { headerSelector } from './selector';
+import { headerSelector } from './selector';
 import './header.css';
 
-export function Header() {
+export function Header({ user }) {
   return (
     <nav className="navbar navbar-fixed-top header">
       <Link to='/' className="navbar-brand">
@@ -17,18 +18,12 @@ export function Header() {
   );
 }
 
-const headerSelector = (state) => {
-  console.log(state.app)
-  return {
-    ...state.app
-  }
-}
-
 const mapState = (state) => {
-  // debugger
   return { ...headerSelector(state) }
 }
 
-export const ConnectedHeader = connect(
-  mapState
-)(Header);
+const enhance = compose(
+  connect(mapState)
+);
+
+export const EnhancedHeader = enhance(Header);

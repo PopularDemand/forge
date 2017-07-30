@@ -1,13 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { chunk } from 'lodash';
 import { compose, defaultProps } from 'recompose';
+import { chunk } from 'lodash';
+
+import SideNav from '../../molecules/sideNav';
 
 import './shop.css';
-import products from './products.tmp.json';
+import * as actionCreators from '../../../store/actions/shop';
+import { shopSelector } from './selector';
 
-export function Shop({ header }) {
+export function Shop({
+  header,
+  displayedProducts,
+  categoriesById,
+  categories,
+  variationsById,
+  selectedProduct,
+  selectedCategory,
+  cart,
+  setSelectedCategory
+}) {
   return (
     <div className="shop-page">
       <div className="jumbotron hero">
@@ -19,16 +31,12 @@ export function Shop({ header }) {
       <div className="content-container container-fluid">
         <div className="row">
           <div className="col-sm-3 hide-xs">
-            <nav className="side-nav">
-              <div className="side-nav-header">
-                <h4>Categories</h4>
-              </div>
-              <Link to="#" className="side-nav-link">Most Popular</Link>
-              <Link to="#" className="side-nav-link">Apparel</Link>
-              <Link to="#" className="side-nav-link">Accessories</Link>
-              <Link to="#" className="side-nav-link">Household</Link>
-              <Link to="#" className="side-nav-link">Gifts</Link>
-            </nav>
+            <SideNav
+              headline="Categories"
+              navLinks={categories}
+              selectedLink={selectedCategory}
+              onLinkClick={setSelectedCategory}
+            />
           </div>
           
           <div className="col-sm-9">
@@ -37,7 +45,7 @@ export function Shop({ header }) {
               <input className="search" type="text" placeholder="Search" />
             </div>
             <div className="row product-grid">
-              {products.length && chunk(products, 3).map((products) => (
+              {displayedProducts.length && chunk(displayedProducts, 3).map((products) => (
                 <div className="product-row" key={products[0].id}>
                   {products.map((product) => (
                     <div className="col-sm-4" key={product.id}>
@@ -56,17 +64,15 @@ export function Shop({ header }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-function mapStateToProps(state) {
-  return {
-    ...state
-  }
+function mapState(state) {
+  return { ...shopSelector(state) }
 }
 
 const enhance = compose(
-  connect(mapStateToProps),
+  connect(mapState, actionCreators),
   defaultProps({
     header: 'Gear Up For Great Changes'
   })

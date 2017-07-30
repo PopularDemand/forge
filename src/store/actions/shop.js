@@ -1,6 +1,13 @@
 export const shopSetState = (data) => {
   return {
-    type: 'STORE_SET_STATE',
+    type: 'SHOP_SET_STATE',
     state: data
+  };
+}
+
+export const setSelectedCategory = (id) => {
+  return {
+    type: 'SET_SELECTED_CATEGORY',
+    id
   };
 }
