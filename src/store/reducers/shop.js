@@ -1,3 +1,7 @@
+import { schema, normalize } from 'normalizr';
+
+const productListSchema = [ new schema.Entity('products') ];
+
 function setState(state, newState) {
   return {
     ...state,
@@ -14,10 +18,11 @@ function setCategory(shopState, selectedCategory) {
 
 function setProducts(shopState, products) {
   // normalize the data
+  const normalized = normalize(products, productListSchema);
 
   return {
     ...shopState,
-    products
+    productsById: normalized.entities.products
   };
 }
 
