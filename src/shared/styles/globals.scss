@@ -7,15 +7,28 @@ $primaryGray: #424242;
 $secondaryGray: #EAEAEA;
 $black: #000000;
 $white: #FFFFFF;
+$headerHeight: 50px;
 
+/* Font Stuff */
 $splashFont: 'PermanentMarker';
-$fontSizeMedium: 24px;
-$fontSizeLarge: 32px;
-$fontSizeXL: 40px;
+$fontSizeSmall: 12px;
+$fontSizeStandard: 14px;
+$fontSizeMedium: 18px;
+$fontSizeLarge: 22px;
+$fontSizeXL: 30px;
+$fontSizeGiant: 38px;
 
+$fwStandard: 400;
+$fwBold: 700;
+
+/* Padding, Margins */
+$paddingStandard: 15px;
+$paddingLarge: 30px; 
+
+/* Image Stuff */
 $imageTint: rgba(66,66,66,0.7);
 
-$headerHeight: 50px;
+
 
 /**
  *  Brand Classes
@@ -24,6 +37,8 @@ $headerHeight: 50px;
 .logo {
   font-family: $splashFont;
 }
+
+
 
 /**
  *  Brand Buttons

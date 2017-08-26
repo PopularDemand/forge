@@ -11,3 +11,15 @@ export const setSelectedCategory = (id) => {
     id
   };
 }
+
+export const loadProducts = () => {
+  return {
+    type: 'LOAD_PRODUCTS',
+    payload: {
+      client: 'shop',
+      request: {
+        url: '/products'
+      }
+    }
+  }
+};

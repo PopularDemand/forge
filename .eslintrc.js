@@ -1,22 +1,4 @@
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
 'use strict';
-
-// Inspired by https://github.com/airbnb/javascript but less opinionated.
-
-// We use eslint-loader so even warnings are very visible.
-// This is why we only use "WARNING" level for potential errors,
-// and we don't use "ERROR" level at all.
-
-// In the future, we might create a separate list of rules for production.
-// It would probably be more strict.
 
 // The ESLint browser environment defines all browser globals as valid,
 // even though most people don't know some of them exist (e.g. `name` or `status`).

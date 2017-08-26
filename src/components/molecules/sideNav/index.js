@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { compose, withHandlers, withProps } from 'recompose';
 import classNames from 'classnames';
 
 export default function SideNav({ headline, navLinks, selectedLink, onLinkClick }) {

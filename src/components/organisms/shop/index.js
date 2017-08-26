@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose, defaultProps } from 'recompose';
-import { chunk } from 'lodash';
 
 import SideNav from '../../molecules/sideNav';
+import Products from '../../molecules/products';
+import withShopData from '../../decorators/withShopData'
 
 import './shop.css';
 import * as actionCreators from '../../../store/actions/shop';
@@ -28,39 +29,23 @@ export function Shop({
         </h1>
       </div>
 
-      <div className="content-container container-fluid">
-        <div className="row">
-          <div className="col-sm-3 hide-xs">
+      <div className="content-container">
+        <div className="content">
+          <div className="side-nav-wrapper">
             <SideNav
               headline="Categories"
               navLinks={categories}
-              selectedLink={selectedCategory}
+              selectedLink={selectedCategory.id}
               onLinkClick={setSelectedCategory}
             />
           </div>
           
-          <div className="col-sm-9">
-            <div className="row grid-header">
-              <h3 className="title">Most Popular</h3>
-              <input className="search" type="text" placeholder="Search" />
-            </div>
-            <div className="row product-grid">
-              {displayedProducts.length && chunk(displayedProducts, 3).map((products) => (
-                <div className="product-row" key={products[0].id}>
-                  {products.map((product) => (
-                    <div className="col-sm-4" key={product.id}>
-                      <div className="product-card">
-                        <div className="name">{product.name}</div>
-                        <img src={product.image} alt="product"/>
-                        <div className="description">{product.description}</div>
-                        <div className="price">{product.price}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
+          <main className="main-content">
+            <Products
+              selectedCategory={selectedCategory}
+              displayedProducts={displayedProducts}
+            />
+          </main>
         </div>
       </div>
     </div>
@@ -73,6 +58,7 @@ function mapState(state) {
 
 const enhance = compose(
   connect(mapState, actionCreators),
+  withShopData,
   defaultProps({
     header: 'Gear Up For Great Changes'
   })
