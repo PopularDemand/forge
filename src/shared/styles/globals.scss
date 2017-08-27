@@ -81,3 +81,18 @@ button {
 /**
   *  Mixins
   */
+
+$breakpoints: (
+  medium: 768px,
+  large: 1224px
+);
+@mixin breakpoint($size) {
+  @if map-has-key($breakpoints, $size) {
+    $value: map-get($breakpoints, $size);
+    @media only screen and (min-width : $value) {
+      @content;
+    }
+  } @else {
+    @warn "breakpoint `#{$size}` not defined";
+  }
+}
