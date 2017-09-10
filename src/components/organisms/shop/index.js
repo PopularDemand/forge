@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, defaultProps } from 'recompose';
+import { compose, defaultProps, setStatic } from 'recompose';
 
 import SideNav from '../../molecules/sideNav';
 import Products from '../../molecules/products';
@@ -39,7 +39,7 @@ export function Shop({
               onLinkClick={setSelectedCategory}
             />
           </div>
-          
+
           <main className="main-content">
             <Products
               selectedCategory={selectedCategory}
@@ -61,7 +61,8 @@ const enhance = compose(
   withShopData,
   defaultProps({
     header: 'Gear Up For Great Changes'
-  })
+  }),
+  setStatic('initialAction', () => actionCreators.loadProducts())
 );
 
 export default enhance(Shop);

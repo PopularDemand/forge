@@ -1,0 +1,98 @@
+/**
+ *  Variables
+ */
+
+$primaryOrange: #FF6600;
+$primaryGray: #424242;
+$secondaryGray: #EAEAEA;
+$black: #000000;
+$white: #FFFFFF;
+$headerHeight: 50px;
+
+/* Font Stuff */
+$splashFont: 'PermanentMarker';
+$fontSizeSmall: 12px;
+$fontSizeStandard: 14px;
+$fontSizeMedium: 18px;
+$fontSizeLarge: 22px;
+$fontSizeXL: 30px;
+$fontSizeGiant: 38px;
+
+$fwStandard: 400;
+$fwBold: 700;
+
+/* Padding, Margins */
+$paddingStandard: 15px;
+$paddingLarge: 30px; 
+
+/* Image Stuff */
+$imageTint: rgba(66,66,66,0.7);
+
+
+
+/**
+ *  Brand Classes
+ */
+
+.logo {
+  font-family: $splashFont;
+}
+
+
+
+/**
+ *  Brand Buttons
+ */
+
+button {
+  border: 1px solid $primaryOrange;
+  font-family: sans-serif;
+
+  &.primary {
+    background-color: $primaryOrange;
+    color: white;
+
+    &:hover {
+      background-color: darken($primaryOrange, 5%);
+      color: $white;
+    }
+  }
+
+  &.secondary {
+    background-color: $white;
+    color: $primaryOrange;
+    &:hover {
+      background-color: darken($white, 5%);
+      color: $primaryOrange;
+    }
+  }
+
+  &.tertiary {
+    background-color: $black;
+    color: $white;
+    border-color: $black;
+    &:hover {
+      background-color: $primaryGray;
+      color: $white;
+    }
+  }
+}
+
+/**
+  *  Mixins
+  */
+
+$breakpoints: (
+  medium: 768px,
+  large: 1224px
+);
+@mixin breakpoint($size) {
+  @if map-has-key($breakpoints, $size) {
+    $value: map-get($breakpoints, $size);
+    @media only screen and (min-width : $value) {
+      @content;
+    }
+  } @else {
+    @warn "breakpoint `#{$size}` not defined";
+  }
+}

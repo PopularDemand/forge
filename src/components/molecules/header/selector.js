@@ -1,10 +1,8 @@
 import { createSelector } from 'reselect';
 
-const getAppState = (state) => state.app;
+const getAppState = (state) => state;
 
 export const headerSelector = createSelector(
   [getAppState],
-  (app) => {
-    return app
-  }
+  (state) => state
 );
