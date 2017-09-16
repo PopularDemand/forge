@@ -7,17 +7,19 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-
 var app = express();
+
+// const env = process.env.NODE_ENV;
+const appRoot = process.mainModule.paths[0].split('node_modules')[0].slice(0, -1);
+const publicPath = path.join('build/public');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(logger());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 var hbs = exphbs.create({
   helpers: { fake: () => {} }
@@ -25,9 +27,9 @@ var hbs = exphbs.create({
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
-app.set('views', './src/public');
+app.set('views', publicPath);
 
-app.use(express.static('public'));
+app.use(express.static(publicPath));
 app.use('/', router);
 
 // catch 404 and forward to error handler

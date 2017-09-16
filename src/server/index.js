@@ -10,6 +10,8 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-server.listen(port);
+server.listen(port, () => {
+  console.log(`listening on port ${port}`);
+});
 server.on('error', err => onError(err, port));
 server.on('listening', () => onListening(server));

@@ -1,9 +1,15 @@
-import Shop from '../../components/organisms/shop';
+import Shop, { initialAction } from '../../components/organisms/shop';
 
 const routes = [
   {
-    route: '/gear-shop',
-    component: Shop
+    path: '/gear-shop',
+    component: Shop,
+    initialAction
+  },
+  {
+    path: '/gear-shop/:category',
+    component: Shop,
+    initialAction
   }
 ];
 

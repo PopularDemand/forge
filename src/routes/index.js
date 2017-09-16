@@ -14,11 +14,12 @@ const router = express.Router();
 router.get('*', function(req, res, next) {
   const promises = routes.reduce((acc, route) => {
     if (
-      matchPath(req.url, route)
-      && route.component
-      && route.component.intiialAction
+      matchPath(req.url, route.path)
+      && matchPath(req.url, route.path).isExact
+      && !!route.component
+      && !!route.initialAction
     ) {
-      acc.push(Promise.resolve(route.component.initialActin()));
+      acc.push(Promise.resolve(store.dispatch(route.initialAction())));
     }
     return acc;
   }, []);
