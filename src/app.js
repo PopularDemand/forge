@@ -10,7 +10,6 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // const env = process.env.NODE_ENV;
-const appRoot = process.mainModule.paths[0].split('node_modules')[0].slice(0, -1);
 const publicPath = path.join('build/public');
 
 // uncomment after placing your favicon in /public

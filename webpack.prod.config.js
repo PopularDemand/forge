@@ -44,13 +44,6 @@ const browserConfig = {
           plugins: ["transform-object-rest-spread"],
         }
       },
-      // {
-      //   test: /\.hbs/,
-      //   loader: "handlebars-loader",
-      //   options: {
-      //     name: "[name].html",
-      //   }
-      // },
       {
         test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.ttf$/],
         loader: "file-loader",
@@ -155,6 +148,7 @@ const serverConfig = {
         loader: require.resolve('babel-loader'),
         options: {
           plugins: ["transform-object-rest-spread"],
+          presets: ["react-app"]
         }
       },
       {
@@ -173,16 +167,6 @@ const serverConfig = {
             loader: "css-loader/locals"
           }
         ]
-      },
-      {
-        test: /js$/,
-        exclude: /(node_modules)/,
-        loader: "babel-loader",
-        query: { presets: ["react-app"] }
-      },
-      {
-        test: /\.hbs/,
-        loader: "handlebars-loader"
       }
     ]
   },
