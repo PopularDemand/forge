@@ -6,7 +6,7 @@ import SideNav from '../../molecules/sideNav';
 import Products from '../../molecules/products';
 import withShopData from '../../decorators/withShopData'
 
-import './shop.css';
+import './shop.scss';
 import * as actionCreators from '../../../store/actions/shop';
 import { shopSelector } from './selector';
 

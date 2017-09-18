@@ -10,6 +10,10 @@ const paths = require('./config/paths');
 process.env.NODE_ENV = 'development';
 const env = process.env.NODE_ENV;
 
+const extractSass = new ExtractTextPlugin({
+    filename: "public/css/[name].css"
+});
+
 const browserConfig = {
   entry: [require.resolve('./config/polyfills'), paths.browserIndexJs],
   bail: true,
@@ -44,13 +48,6 @@ const browserConfig = {
           plugins: ["transform-object-rest-spread"],
         }
       },
-      // {
-      //   test: /\.hbs/,
-      //   loader: "handlebars-loader",
-      //   options: {
-      //     name: "[name].html",
-      //   }
-      // },
       {
         test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.ttf$/],
         loader: "file-loader",
@@ -60,34 +57,28 @@ const browserConfig = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          use: [
-            {
-              loader: "css-loader",
-              options: {
-                importLoaders: 1
-              }
-            },
-            {
-              loader: "postcss-loader",
-              options: {
-                ident: 'postcss',
-                plugins: () => [
-                  require('postcss-flexbugs-fixes'),
-                  autoprefixer({
-                    browsers: [
-                      '>1%',
-                      'last 4 versions',
-                      'Firefox ESR',
-                      'not ie < 9', // React doesn't support IE8 anyway
-                    ],
-                    flexbox: 'no-2009'
-                  })
-                ]
-              }
+          fallback: 'isomorphic-style-loader',
+          //resolve-url-loader may be chained before sass-loader if necessary
+          use: ['css-loader', 'sass-loader', {
+            loader: "postcss-loader",
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                require('postcss-flexbugs-fixes'),
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9',
+                  ],
+                  flexbox: 'no-2009'
+                })
+              ]
             }
-          ]
+          }]
         })
       }
     ]
@@ -101,22 +92,7 @@ const browserConfig = {
   plugins: [
     new ExtractTextPlugin({
       filename: "public/css/[name].css"
-    }),
-    // new webpack.DefinePlugin(env.stringified)
-    // new UglifyJSPlugin({
-    //   compress: {
-    //     warnings: false,
-    //     comparisons: false
-    //   },
-    //   output: {
-    //     comments: false,
-    //     ascii_only: true
-    //   },
-    //   sourcemap: true
-    // }),
-    // new ManifestPlugin({
-    //   fileName: 'asset-manifest.json'
-    // })
+    })
   ]
 };
 
@@ -153,6 +129,7 @@ const serverConfig = {
         loader: require.resolve('babel-loader'),
         options: {
           plugins: ["transform-object-rest-spread"],
+          presets: ['react-app']
         }
       },
       {
@@ -164,24 +141,60 @@ const serverConfig = {
           emit: false
         }
       },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: "css-loader/locals"
-          }
-        ]
-      },
-      {
-        test: /js$/,
-        exclude: /(node_modules)/,
-        loader: "babel-loader",
-        query: { presets: ["react-app"] }
-      },
       // {
-      //   test: /\.hbs/,
-      //   loader: "handlebars-loader"
+      //   test: /\.(css|scss)$/,
+      //   use: ExtractTextPlugin.extract({
+      //       use: [{
+      //         loader: "isomorphic-style-loader"
+      //       }, {
+      //         loader: "css-loader"
+      //       }, {
+      //         loader: "sass-loader"
+      //       }, {
+      //         loader: "postcss-loader",
+      //         options: {
+      //           ident: 'postcss',
+      //           plugins: () => [
+      //             require('postcss-flexbugs-fixes'),
+      //             autoprefixer({
+      //               browsers: [
+      //                 '>1%',
+      //                 'last 4 versions',
+      //                 'Firefox ESR',
+      //                 'not ie < 9',
+      //               ],
+      //               flexbox: 'no-2009'
+      //             })
+      //           ]
+      //         }
+      //       }]
+      //   })
       // }
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'isomorphic-style-loader',
+          //resolve-url-loader may be chained before sass-loader if necessary
+          use: ['css-loader', 'sass-loader', {
+              loader: "postcss-loader",
+              options: {
+                ident: 'postcss',
+                plugins: () => [
+                  require('postcss-flexbugs-fixes'),
+                  autoprefixer({
+                    browsers: [
+                      '>1%',
+                      'last 4 versions',
+                      'Firefox ESR',
+                      'not ie < 9',
+                    ],
+                    flexbox: 'no-2009'
+                  })
+                ]
+              }
+            }]
+        })
+      }
     ]
   },
   node: {
@@ -194,25 +207,14 @@ const serverConfig = {
     new ExtractTextPlugin({
       filename: "public/css/[name].css"
     }),
-    // new webpack.DefinePlugin(env.stringified),
-    // new UglifyJSPlugin({
-    //   compress: {
-    //     warnings: false,
-    //     comparisons: false
-    //   },
-    //   output: {
-    //     comments: false,
-    //     ascii_only: true
-    //   },
-    //   sourcemap: true
-    // }),
     new webpack.DefinePlugin({
       'window': {
         navigator: {
           'userAgent': {
             indexOf: () =>{}
           },
-        }
+        },
+        document: {}
       }
     }),
     new WebpackShellPlugin(env)

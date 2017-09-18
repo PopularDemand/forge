@@ -6,7 +6,7 @@ import { compose } from 'recompose';
 import { Ren } from '../../atoms/logo';
 
 import { headerSelector } from './selector';
-import './header.css';
+import './header.scss';
 
 export function Header({ user }) {
   return (

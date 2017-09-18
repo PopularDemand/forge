@@ -53,36 +53,35 @@ const browserConfig = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          use: [
-            {
+          fallback: 'isomorphic-style-loader',
+          //resolve-url-loader may be chained before sass-loader if necessary
+          use: [{
               loader: "css-loader",
               options: {
                 importLoaders: 1,
                 minimize: true,
                 sourceMap: true
               }
-            },
-            {
-              loader: "postcss-loader",
-              options: {
-                ident: 'postcss',
-                plugins: () => [
-                  require('postcss-flexbugs-fixes'),
-                  autoprefixer({
-                    browsers: [
-                      '>1%',
-                      'last 4 versions',
-                      'Firefox ESR',
-                      'not ie < 9', // React doesn't support IE8 anyway
-                    ],
-                    flexbox: 'no-2009'
-                  })
-                ]
-              }
+            }, 'sass-loader', {
+            loader: "postcss-loader",
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                require('postcss-flexbugs-fixes'),
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9',
+                  ],
+                  flexbox: 'no-2009'
+                })
+              ]
             }
-          ]
+          }]
         })
       }
     ]
@@ -97,18 +96,6 @@ const browserConfig = {
     new ExtractTextPlugin({
       filename: "public/css/[name].css"
     }),
-    // new webpack.DefinePlugin(env.stringified)
-    // new UglifyJSPlugin({
-    //   compress: {
-    //     warnings: false,
-    //     comparisons: false
-    //   },
-    //   output: {
-    //     comments: false,
-    //     ascii_only: true
-    //   },
-    //   sourcemap: true
-    // }),
     new ManifestPlugin({
       fileName: 'asset-manifest.json'
     })
@@ -161,12 +148,36 @@ const serverConfig = {
         }
       },
       {
-        test: /\.css$/,
-        use: [
-          {
-            loader: "css-loader/locals"
-          }
-        ]
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'isomorphic-style-loader',
+          //resolve-url-loader may be chained before sass-loader if necessary
+          use: [{
+              loader: "css-loader",
+              options: {
+                importLoaders: 1,
+                minimize: true,
+                sourceMap: true
+              }
+            }, 'sass-loader', {
+            loader: "postcss-loader",
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                require('postcss-flexbugs-fixes'),
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9',
+                  ],
+                  flexbox: 'no-2009'
+                })
+              ]
+            }
+          }]
+        })
       }
     ]
   },
@@ -180,18 +191,6 @@ const serverConfig = {
     new ExtractTextPlugin({
       filename: "public/css/[name].css"
     }),
-    // new webpack.DefinePlugin(env.stringified)
-    // new UglifyJSPlugin({
-    //   compress: {
-    //     warnings: false,
-    //     comparisons: false
-    //   },
-    //   output: {
-    //     comments: false,
-    //     ascii_only: true
-    //   },
-    //   sourcemap: true
-    // }),
     new webpack.DefinePlugin({
       'window': {
         navigator: {

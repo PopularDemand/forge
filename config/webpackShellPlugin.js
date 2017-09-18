@@ -8,13 +8,13 @@ const options = {
   development: {
     onBuildStart: [],
     onBuildEnd: [
-      'cp src/public/index.hbs build/public'
+      'cp src/public/index.hbs build/public/index.hbs'
     ]
   },
   'production': {
     onBuildStart: [],
     onBuildEnd: [
-      'cp src/public/index.hbs build/public'
+      'cp src/public/index.hbs build/public/index.hbs'
     ]
   }
 }

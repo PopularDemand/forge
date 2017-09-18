@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { EnhancedHeader } from '../molecules/header';
 import Homepage from '../organisms/homepage';
 import Shop from '../organisms/shop';
-import './app.css';
+import './app.scss';
 
 export function App() {
   return (

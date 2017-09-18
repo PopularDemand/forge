@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formio } from 'react-formio';
-import './homepage.css';
+import './homepage.scss';
 
 function Homepage() {
   return (
